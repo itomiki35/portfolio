@@ -11,9 +11,16 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body>
-    <%= render 'shared/header' %>
-    <%= yield %>
+  <body class="min-h-screen">
+    <% if logged_in? %>
+      <%= render 'shared/header' %>
+      <%= render 'shared/flash_message' %>
+      <%= yield %>
+    <% else %>
+      <%= render 'shared/before_login_header' %>
+      <%= render 'shared/flash_message' %>
+      <%= yield %>
+    <% end %>
     <%= render 'shared/footer' %>
    
   </body>
